@@ -1,2 +1,80 @@
 O Dependency Injection no Angular é um padrão de design que permite injetar dependências (serviços, classes, objetos)
 em componentes, diretivas, pipes ou outros serviços, ao invés de criá-las manualmente.
+
+
+Exemplo de um Service chamado UserService para consumir uma API REST:
+
+
+// --- 1. Módulo Principal (src/app/app.module.ts) ---
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http'; // Módulo para fazer requisições HTTP
+
+import { AppComponent } from './app.component';
+// O UserService é importado automaticamente pelo Angular por causa do 'providedIn: "root"'.
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule 
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+
+// --- 2. Serviço de Usuário (src/app/user.service.ts) ---
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root' 
+})
+export class UserService {
+
+  private apiUrl = 'https://jsonplaceholder.typicode.com/users';
+
+  // O Angular injeta o HttpClient para nós
+  constructor(private http: HttpClient) { }
+
+  // Retorna um "Observable" com a lista de usuários da API
+  getUsers(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
+  }
+}
+
+
+// --- 3. Componente Principal (src/app/app.component.ts) ---
+import { Component, OnInit } from '@angular/core';
+import { UserService } from './user.service'; 
+
+@Component({
+  selector: 'app-root',
+  // O template HTML está diretamente aqui para simplificar
+  template: `
+    <h1>Lista de Usuários via Serviço</h1>
+    <div *ngIf="users.length === 0">Carregando...</div>
+    <ul>
+      <li *ngFor="let user of users">
+        {{ user.name }} ({{ user.email }})
+      </li>
+    </ul>
+  `
+})
+export class AppComponent implements OnInit {
+
+  users: any[] = [];
+
+  constructor(private userService: UserService) {}
+
+  ngOnInit() {
+    this.userService.getUsers().subscribe(data => {
+      this.users = data;
+    });
+  }
+}

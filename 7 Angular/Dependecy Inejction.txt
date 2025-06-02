@@ -1,0 +1,2 @@
+O Dependency Injection no Angular é um padrão de design que permite injetar dependências (serviços, classes, objetos)
+em componentes, diretivas, pipes ou outros serviços, ao invés de criá-las manualmente.

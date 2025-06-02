@@ -1,0 +1,13 @@
+Migrations são scripts que controlam a evolução da estrutura (schema) do seu banco de dados de forma versionada e incremental.
+Onde cada Migration representa uma alteração específica na estrutura, como criar uma nova tabela, criar um índice, alterar o
+tipo de dados de uma coluna, etc. Já Seeds são scripts usados para popular o banco de dados com dados iniciais ou de teste.
+Assim como as migrations, os seeds têm métodos 'up()' (que insere os dados no banco) e 'down()' (que remove dados inseridos pelo up()),
+eles são usados para criar dados básicos para iniciar a aplicação, configurar dados específicos para testes automatizados
+e popular o banco com dados fictícios, facilitando o teste de funcionalidades.
+
+Eu faria o uso das migrations e das seeds da seguinte forma, supondo que eu vá criar um sistema de uma loja virtual. Eu criaria a
+tabela de usuários com seus respectivos atributos e usaria uma migration, porque esta é uma mudança fundamental na estrutura do
+banco, onde todos os sistemas de desenvolvimento necessitam desta tabela. Após isto, eu criaria uma tabela de produtos e novamente
+usaria uma migration pelo mesmo motivo da anterior: é uma mudança estrutural. E seguiria assim conforme fosse criando as tabelas
+das entidades restantes. Após a criação das tabelas com seus respectivos atributos, eu usaria as seeds para povoar estas tabelas,
+atribuindo dados para poder testar se os relacionamentos entre as entidades estão corretos, além de realizar outros testes automatizados.

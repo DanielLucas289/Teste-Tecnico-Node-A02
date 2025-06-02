@@ -1,6 +1,6 @@
 function fetchData() {
   return new Promise((resolve, reject) => {
-    // Simulando uma operação assíncrona
+    // Simula uma operação assíncrona
     setTimeout(() => {
       resolve("Data fetched successfully!");
     }, 1000);

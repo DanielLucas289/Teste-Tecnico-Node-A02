@@ -1,0 +1,13 @@
+1) ngOnInit() :
+É executado uma única vez após a criação do componente e a definição de suas propriedades de entrada (@Input()). Ele é usado
+para Inicialização de dados, fazer chamadas a serviços ou configurar o componente.
+
+
+2) ngOnChanges() :
+É disparado no início e toda vez que uma propriedade @Input() recebe um novo valor do componente pai. Ele permite reagir às
+mudanças de dados vindos do componente pai.
+
+
+3) ngOnDestroy() : 
+É chamado uma única vez, imediatamente antes de o componente ser removido da tela e destruído. Ele é usado para limpar recursos, 
+cancelar assinaturas de observables, timers ou handlers, evitando vazamento de memória.

@@ -1,0 +1,19 @@
+O roteamento no Angular permite navegar entre diferentes componentes com base na URL, tratando a aplicação como uma
+Single Page Application (SPA). Em vez de fazer uma nova requisição ao servidor, o Angular exibe dinamicamente o 
+componente associado àquela rota. Isso é gerenciado pelo módulo RouterModule, que interpreta as rotas definidas e 
+renderiza o componente correspondente dentro de uma tag especial chamada <router-outlet>.
+
+
+Exemplo:
+
+//app.routes.ts
+import { Routes } from '@angular/router';
+import { UserListComponent } from './users/user-list/user-list.component'; // 1. Importar o componente
+
+export const routes: Routes = [
+  {
+    path: 'users',                 // 2. Caminho na URL 
+    component: UserListComponent   // 3. Componente que será exibido
+  }
+];
+

@@ -1,0 +1,26 @@
+1) Uso Correto dos Verbos HTTP: 
+GET → Buscar dados
+POST → Criar dados
+PUT/PATCH → Atualizar dados
+DELETE → Remover dados
+
+A adoção desse padrão é importante porque torna a API intuitiva e fácil de entender e garante a interoperabilidade. Desse modo, 
+qualquer desenvolvedor que conheça os padrões REST conseguirá compreender a API sem dificuldades.
+
+
+2) Validação de Dados:
+A validação de dados de entrada é crucial porque garante a integridade das informações, evitando que dados inválidos ou com
+formatação incorreta sejam armazenados no banco de dados. Além disso, essa prática é essencial para a segurança, pois previne
+ataques maliciosos, como o SQL Injection.
+
+
+3) Tratamento de Erros e Respostas Consistentes:
+Sempre retornar respostas com status HTTP corretos (exemplos abaixo):
+200 OK → sucesso
+201 Created → recurso criado
+400 Bad Request → erro do cliente (validação, dados incorretos)
+404 Not Found → recurso não encontrado
+500 Internal Server Error → erro inesperado do servidor
+
+A adoção desse padrão é importante porque melhora a experiência de quem consome a API. Os erros se tornam claros e padronizados,
+o que permite ao desenvolvedor saber o que deu errado e como tratar, além de evitar a exposição de falhas internas.

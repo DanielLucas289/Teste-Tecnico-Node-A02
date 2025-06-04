@@ -1,10 +1,5 @@
-Para desenvolver essa aplicação, eu comecei estruturando a base com Angular. Minha primeira decisão foi usar o padrão de
-Injeção de Dependências para criar um serviço modular, que chamei de UserService. Eu o decorei com @Injectable para que o
-Angular pudesse gerenciá-lo e, dentro dele, centralizei toda a lógica de comunicação com a API REST, usando o HttpClient para
-fazer as requisições e receber os dados de forma assíncrona. Em seguida, no meu componente de front-end, eu simplesmente injetei
-o UserService no construtor. Isso me permitiu chamar os métodos do serviço para buscar os dados e guardá-los em uma variável.
-Para a visualização, eu optei pelo Webix. Na maioria das telas, usei a abordagem mais direta: apenas configurei o DataTable
-apontando a propriedade url para o endpoint da API, e o próprio Webix cuidou de fazer a chamada e popular a tabela. Em casos
-onde eu precisava de mais controle, como para manipular os dados antes de exibi-los, usei o webix.ajax() para fazer a chamada
-manualmente e, no retorno, utilizei o método .parse() para preencher a tabela. No fim, essa arquitetura me deu um resultado muito
-limpo, mantendo a busca de dados totalmente separada da sua apresentação na interface.
+Primeiramente, construo a estrutura do datatable, definindo as colunas necessárias e atribuindo um id ao componente, o que 
+permite manipulá-lo posteriormente. Com a tabela estruturada, realizo uma requisição à API utilizando webix.ajax(). Como 
+essa operação é assíncrona, utilizo .then() para garantir que o carregamento dos dados ocorra apenas após a resposta ser 
+recebida. Quando a API retorna os dados no formato JSON, localizo o datatable pelo seu id e utilizo o método .parse() para 
+carregar os dados na tabela, tornando-a imediatamente visível e interativa para o usuário.
